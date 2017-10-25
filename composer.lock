@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ea384c36a00533ed3b900a9f6bae96e",
+    "content-hash": "9028ceac77c0a067b6c4b401abbc0218",
     "packages": [
         {
             "name": "psr/container",
@@ -577,7 +577,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.1"
+    },
     "platform-dev": [],
     "platform-overrides": {
         "ext-memcache": "7.1",

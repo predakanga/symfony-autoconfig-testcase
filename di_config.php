@@ -6,13 +6,14 @@
  */
 
 // Auto-configuration
-$container->registerForAutoconfiguration(\Symfony\Component\Console\Application::class)
-    ->setPublic(true);
+use Symfony\Component\DependencyInjection\ChildDefinition;
 
 // Default definition
 $definition = new \Symfony\Component\DependencyInjection\Definition();
 $definition->setAutowired(true)
     ->setAutoconfigured(true)
-    ->setPublic(false);
+    ->setPublic(false)
+    ->setInstanceofConditionals([\Symfony\Component\Console\Application::class => (new ChildDefinition(''))->setPublic(true)]);
+
 
 $this->registerClasses($definition, 'Testcase\\', 'src/**');
