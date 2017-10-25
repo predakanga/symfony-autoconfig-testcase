@@ -1,19 +1,16 @@
 <?php
 
-/**
- * @var \Symfony\Component\DependencyInjection\Loader\PhpFileLoader $this
- * @var \Symfony\Component\DependencyInjection\ContainerBuilder $container
- */
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-// Auto-configuration
-use Symfony\Component\DependencyInjection\ChildDefinition;
+return function(ContainerConfigurator $c) {
+    $s = $c->services();
 
-// Default definition
-$definition = new \Symfony\Component\DependencyInjection\Definition();
-$definition->setAutowired(true)
-    ->setAutoconfigured(true)
-    ->setPublic(false)
-    ->setInstanceofConditionals([\Symfony\Component\Console\Application::class => (new ChildDefinition(''))->setPublic(true)]);
+    $s->defaults()->autowire(true)
+        ->autoconfigure(true)
+        ->private();
 
+    $s->instanceof(\Symfony\Component\Console\Application::class)
+        ->public();
 
-$this->registerClasses($definition, 'Testcase\\', 'src/**');
+    $s->load('Testcase\\', 'src/**');
+};
